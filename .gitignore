@@ -1,3 +1,7 @@
+# Settings specific to the developer's text-editor
+.vscode
+route.rest
+
 # Logs
 logs
 *.log

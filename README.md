@@ -33,11 +33,11 @@ Other notes:
 
 NPM Packages to install: 
 
-- express 
-- mongoose
-- dotenv
-- uuid 
-- nodemon
+<!-- - express  -->
+<!-- - mongoose -->
+<!-- - dotenv -->
+<!-- - uuid  -->
+<!-- - nodemon -->
 
 (should be installed automatically)
 - cookie-parser
