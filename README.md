@@ -11,8 +11,8 @@ Required Functionality (Routes):
 1. Create Task
 2. Update Task (Mark as Completed/ Uncompleted)
 3. Delete Task 
-4. Delete Multipl Tasks 
-5. Create Muliple Tasks
+4. Delete Multiple Tasks 
+5. Create Multiple Tasks
 6. Display all Tasks 
 
 Create a new mongoose schema toDoSchema, it should have the following properties:
@@ -33,11 +33,11 @@ Other notes:
 
 NPM Packages to install: 
 
-<!-- - express  -->
-<!-- - mongoose -->
-<!-- - dotenv -->
-<!-- - uuid  -->
-<!-- - nodemon -->
+- express  -->
+- mongoose
+- dotenv
+- uuid 
+- nodemon
 
 (should be installed automatically)
 - cookie-parser

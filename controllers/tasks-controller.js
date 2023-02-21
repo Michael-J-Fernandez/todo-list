@@ -1,12 +1,9 @@
-const Blog = require("../models/Blogs.js");
+const Task = require("../models/Tasks.js");
 
 
 async function createTask(req, res) {
   try {
-    const newTask = await Task.create({
-
-      // Insert task parameters
-    });
+    const newTask = await Task.create(req.body);
 
     res.json({
       success: true,
@@ -21,7 +18,6 @@ async function createTask(req, res) {
   }
 }
 
-
 async function updateTaskStatus(req, res) {
   if (!req.params.id) {
     res.json({
@@ -32,11 +28,25 @@ async function updateTaskStatus(req, res) {
   }
 
   try {
-    await Task.updateOne({ id: req.params.id }, req.body.status);
+    const updates = {
+      status: req.params.status
+    }
 
-    return res.json({
+    if (req.params.status === "complete") {
+      updates.completed = true;
+      updates.dateCompleted = Date.now();
+
+    } else {
+      updates.completed = false;
+      updates.dateCompleted = null;
+    }
+    
+    const taskToUpdate = await Task.updateOne({ id: req.params.id }, updates);
+
+    res.json({
       success: true,
-      message: `Updated task with id: ${req.params.id} to ${req.body.status}`,
+      message: `Updated task with id: ${req.params.id} to ${req.params.status}`,
+      task: taskToUpdate
     });
   } catch (e) {
     console.log(e.message);
@@ -46,7 +56,6 @@ async function updateTaskStatus(req, res) {
     });
   }
 }
-
 
 async function deleteOneTask(req, res) {
   if (!req.params.id) {
@@ -68,7 +77,6 @@ async function deleteOneTask(req, res) {
   }
 }
 
-
 async function deleteMany(req, res) {
   if (!req.query) {
     res.json({
@@ -82,7 +90,7 @@ async function deleteMany(req, res) {
     await Task.deleteMany(req.query);
     res.json({
       success: true,
-      message: `Deleted multiple tasks matching: ${req.query}`,
+      message: `Deleted multiple tasks matching: ${JSON.stringify(req.query)}`,
     });
   } catch (e) {
     console.log(e.message);
@@ -90,9 +98,31 @@ async function deleteMany(req, res) {
   }
 }
 
-async function createMany(req, res) {}
+async function createMany(req, res) {
+    try {
+      const newTask = await Task.create(req.body);
 
-async function getAllTasks(req, res) {}
+      res.json({
+        success: true,
+        savedTasks: newTask,
+      });
+    } catch (e) {
+      console.log(typeof e);
+      console.log(e);
+      res.json({
+        error: e.toString(),
+      });
+    }
+}
+
+async function getAllTasks(req, res) {
+    try {
+      const allTasks = await Task.find({});
+      res.json({ tasks: allTasks });
+    } catch (e) {
+      console.log(e);
+    }
+}
 
 
 

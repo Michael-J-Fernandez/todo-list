@@ -4,6 +4,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+require("dotenv").config();
+
+var { mongooseConnect } = require("./mongoose.js");
+mongooseConnect();
+
 const indexRouter = require('./routes/index');
 const tasksRouter = require('./routes/tasks');
 

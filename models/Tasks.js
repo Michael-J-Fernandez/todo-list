@@ -4,19 +4,20 @@ const { v4: uuidv4 } = require("uuid");
 const taskSchema = new mongoose.Schema({
   name: {
     type: String,
-    validation: required
+    required: true
   },
   text: String,
   description: String,
   completed: {
     type: Boolean,
-    validation: required
+    required: true,
+    default: false
   },
   dateCompleted: Date,
   status: {
     type: String,
     default: 'incomplete',
-    validation: required,
+    required: true,
     enum: [
       'incomplete', 'complete', 'deferred'
     ]
@@ -25,7 +26,10 @@ const taskSchema = new mongoose.Schema({
     type: String,
     default: uuidv4,
   },
-  createdAt: { type: Date, default: Date.now },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const Task = mongoose.model("tasks", taskSchema);
