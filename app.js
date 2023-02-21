@@ -6,7 +6,7 @@ const logger = require('morgan');
 
 require("dotenv").config();
 
-var { mongooseConnect } = require("./mongoose.js");
+const { mongooseConnect } = require("./mongoose.js");
 mongooseConnect();
 
 const indexRouter = require('./routes/index');
@@ -14,7 +14,6 @@ const tasksRouter = require('./routes/tasks');
 
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

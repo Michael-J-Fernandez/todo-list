@@ -8,7 +8,7 @@ async function mongooseConnect() {
   try {
     
     await mongoose.connect(mongoDB, () => {
-      console.log('MongoDB connected');
+      console.log('Atlas connected');
     }); 
 
   } catch (error) {
